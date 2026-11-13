@@ -59,3 +59,14 @@ curl -Lo models/face_landmarker.task https://storage.googleapis.com/mediapipe-mo
 ruff check . && ruff format --check .
 pytest
 ```
+
+## Extensão do Chrome
+
+1. Abra `chrome://extensions` e ative o **Modo do desenvolvedor**.
+2. Clique em **Carregar sem compactação** e selecione a pasta `extension/`.
+3. Com o backend rodando, entre em uma chamada do Meet. Se o Chrome pedir
+   permissão para acessar a rede local/dispositivos, permita: é a conexão
+   com `localhost:8000`.
+
+A extensão envolve o `getUserMedia` da página: o Meet continua escolhendo a
+câmera normalmente, e recebe de volta o vídeo processado.

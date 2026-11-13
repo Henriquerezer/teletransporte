@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Teletransporte",
+  "version": "0.1.0",
+  "description": "Faça o gesto de teletransporte no Google Meet e desapareça da câmera.",
+  "content_scripts": [
+    {
+      "matches": ["https://meet.google.com/*"],
+      "js": ["camera.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://meet.google.com/*"],
+      "js": ["bridge.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
