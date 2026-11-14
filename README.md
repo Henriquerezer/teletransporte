@@ -29,6 +29,20 @@ docker compose up --build
 
 Verifique em <http://localhost:8000/health>.
 
+### Protocolo
+
+`ws://localhost:8000/ws`: o cliente envia um frame JPEG (binário) e espera a
+resposta antes de enviar o próximo.
+
+```json
+{"visible": false, "changed": true, "gesture": true, "person": true}
+```
+
+- `visible`: se você deve aparecer no vídeo.
+- `changed`: a visibilidade mudou neste frame (hora de tocar o efeito).
+- `gesture`: o gesto foi visto neste frame.
+- `person`: há rosto ou mão no frame (usado para aprender o fundo vazio).
+
 ### Desenvolvimento local
 
 ```bash
