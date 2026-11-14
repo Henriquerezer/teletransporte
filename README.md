@@ -70,3 +70,10 @@ pytest
 
 A extensão envolve o `getUserMedia` da página: o Meet continua escolhendo a
 câmera normalmente, e recebe de volta o vídeo processado.
+
+### Fundo vazio
+
+Para sumir de verdade, a extensão precisa saber como é o fundo sem você.
+Antes da primeira vez, saia do quadro por uns 2 segundos: o fundo é
+aprendido sozinho (e atualizado sempre que o quadro fica vazio). Sem isso,
+o vídeo fica preto enquanto você está "teletransportado".

@@ -1,5 +1,5 @@
 // Intercepta a câmera que o Meet abre, envia frames reduzidos ao backend e
-// devolve ao Meet um vídeo processado no lugar do original.
+// devolve ao Meet o vídeo com o efeito de teletransporte (effect.js).
 
 (() => {
   const SEND_INTERVAL_MS = 100;
@@ -35,8 +35,14 @@
     const processor = new MediaStreamTrackProcessor({ track: cameraTrack });
     const generator = new MediaStreamTrackGenerator({ kind: "video" });
 
+    const effect = new TeleportEffect();
+    const transform = (frame, controller) => {
+      sendForAnalysis(frame);
+      controller.enqueue(effect.apply(frame, state, performance.now()));
+    };
+
     processor.readable
-      .pipeThrough(new TransformStream({ transform: processFrame }))
+      .pipeThrough(new TransformStream({ transform }))
       .pipeTo(generator.writable)
       .catch(() => cameraTrack.stop());
 
@@ -47,11 +53,6 @@
       cameraTrack.stop();
     };
     return generator;
-  }
-
-  function processFrame(frame, controller) {
-    sendForAnalysis(frame);
-    controller.enqueue(frame);
   }
 
   function sendForAnalysis(frame) {
