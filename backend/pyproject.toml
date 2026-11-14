@@ -5,6 +5,9 @@ description = "Detecta o gesto de teletransporte e avisa a extensão do Google M
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.115",
+    "mediapipe>=0.10.14",
+    "numpy>=1.26",
+    "pillow>=10",
     "uvicorn[standard]>=0.30",
 ]
 
